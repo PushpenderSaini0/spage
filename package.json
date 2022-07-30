@@ -1,0 +1,25 @@
+{
+  "name": "spage",
+  "version": "1.0.0",
+  "description": "framework to create component based static pages",
+  "main": "lib/index.js",
+  "bin": {
+    "spage": "bin/spage.js"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PushpenderSaini0/spage.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PushpenderSaini0/spage/issues"
+  },
+  "homepage": "https://github.com/PushpenderSaini0/spage#readme"
+}
