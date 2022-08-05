@@ -9,6 +9,7 @@ const path = require('path');
 const renderComponentInPageDomHandler = ([pageWithComponent, projectConfig]) => {
     renderComponentInPageDom(pageWithComponent, projectConfig);
     fse.rmSync(path.join(projectConfig["buildDir"], "__componentsLib"), { recursive: true, force: true });
+    fse.copySync(projectConfig["publicDir"], projectConfig["buildDir"]);
 }
 
 const startBuild = (projectConfig) => {

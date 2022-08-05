@@ -10,8 +10,8 @@ const isSpageProject = (configFile) => {
 
 const loadProjectConfig = (configFile) => {
     const projectConfig = JSON.parse(fs.readFileSync(configFile, 'utf8'));
-    const requiredProps = ["componentsDir", "pagesDir", "buildDir"];
-    const requiredPropsIsPath = [true, true, true];
+    const requiredProps = ["componentsDir", "pagesDir", "buildDir", "publicDir"];
+    const requiredPropsIsPath = [true, true, true, true];
 
     // Check if all required properties are set in the config file
     for (let i = 0; i < requiredProps.length; i++) {
