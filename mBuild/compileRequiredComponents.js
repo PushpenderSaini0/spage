@@ -15,25 +15,29 @@ const getComponentByName = (components, componentName) => {
 
 const compileComponent = (component, projectConfig) => {
     const webpackConfig = webpackConfigBuilder(component, projectConfig);
-    console.log(webpackConfig);
-    let messages;
-    webpack(
-        webpackConfig,
-        (err, stats) => {
-            // [Stats Object](#stats-object)
+
+    const compiler = webpack(webpackConfig);
+
+    return new Promise((resolve, reject) => {
+
+        let messages;
+        compiler.run((err, stats) => {
             messages = stats.toJson({ all: false, warnings: true, errors: true });
             if (err || stats.hasErrors()) {
                 console.log("Compiled " + component["name"] + " with " + messages.errors.length + " errors");
                 console.log(messages.errors[0].message);
-                process.exit(1);
+                resolve(false);
             } else {
                 console.log("Compiled " + component["name"]);
+                resolve(true);
             }
-        }
-    );
+            // Close compiler instance
+            compiler.close((closeErr) => { /* */ });
+        });
+    });
 }
 
-const compileRequiredComponents = (pageWithComponent, components, projectConfig) => {
+const compileRequiredComponents = async (pageWithComponent, components, projectConfig) => {
 
     const requiredComponentsSet = new Set();
 
@@ -45,7 +49,8 @@ const compileRequiredComponents = (pageWithComponent, components, projectConfig)
     const requiredComponents = [...requiredComponentsSet];
 
     for (let i = 0; i < requiredComponents.length; i++) {
-        compileComponent(getComponentByName(components, requiredComponents[i]), projectConfig);
+        await compileComponent(getComponentByName(components, requiredComponents[i]), projectConfig);
     }
+    return [pageWithComponent, projectConfig];
 }
 module.exports = compileRequiredComponents;

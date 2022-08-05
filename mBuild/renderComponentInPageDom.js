@@ -5,7 +5,6 @@ const { JSDOM } = jsdom;
 
 const renderComponentInPageDom = (pageWithComponent, projectConfig) => {
 
-
     for (let i = 0; i < pageWithComponent.length; i++) {
         const page = pageWithComponent[i];
         if ("component" in page) {

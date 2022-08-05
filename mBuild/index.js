@@ -5,6 +5,10 @@ const renderComponentInPageDom = require('./renderComponentInPageDom');
 const loadPages = require('./loadPages.js');
 const fse = require('fs-extra');
 
+const renderComponentInPageDomHandler = ([pageWithComponent, projectConfig]) => {
+    renderComponentInPageDom(pageWithComponent, projectConfig);
+}
+
 const startBuild = (projectConfig) => {
 
     // Load all components
@@ -24,8 +28,10 @@ const startBuild = (projectConfig) => {
 
         // Update component for page
         const pageWithComponent = getComponentForPage(pages, components);
-        compileRequiredComponents(pageWithComponent, components, projectConfig);
-        renderComponentInPageDom(pageWithComponent, projectConfig);
+
+        compileRequiredComponents(pageWithComponent, components, projectConfig).then(
+            renderComponentInPageDomHandler
+        );
 
     } else {
         console.log("No components were found / loaded");
