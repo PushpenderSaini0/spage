@@ -3,6 +3,11 @@ const path = require('path');
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 
+const isComponentGlobalUnique = (components, componentName) => {
+    // TODO Implement this
+    return true;
+}
+
 const getComponentForPage = (pages, components) => {
 
     // Add all component in set for fast lookup
@@ -31,7 +36,15 @@ const getComponentForPage = (pages, components) => {
 
             if (rootDiv.id) {
                 if (componentsSet.has(rootDiv.id)) {
-                    // TODO
+
+                    if (isComponentGlobalUnique(rootDiv.id)) {
+
+                        // Add component only if its globally unique
+                        pages[i]["component"] = rootDiv.id;
+                    } else {
+                        console.log("Component used in root div must be globally unique\n" + rootDiv.id
+                            + " component cannot be used");
+                    }
                 }
                 else {
                     console.log("No component found with name " + rootDiv.id);
@@ -45,8 +58,7 @@ const getComponentForPage = (pages, components) => {
         }
 
     }
-
-
+    return pages;
 }
 
 module.exports = getComponentForPage;
