@@ -49,6 +49,6 @@ const compileRequiredComponents = async (pageWithComponent, components, projectC
     for (let i = 0; i < requiredComponents.length; i++) {
         await compileComponent(getComponentByName(components, requiredComponents[i]), projectConfig);
     }
-    return [pageWithComponent, projectConfig];
+    return [pageWithComponent, components, projectConfig];
 }
 module.exports = compileRequiredComponents;

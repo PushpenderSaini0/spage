@@ -23,6 +23,9 @@ const renderComponentInPageDom = (pageWithComponent, projectConfig) => {
 
             rootDiv.innerHTML = require(path.join(componentLibPath, `${component}.js`))[component][component]();
 
+            // Add main css
+            dom.window.document.getElementsByTagName("HEAD")[0].innerHTML += `<link rel="stylesheet" href="/__main.css">`
+
             const markup = dom.serialize();
             fs.writeFileSync(pagePath, markup);
         }

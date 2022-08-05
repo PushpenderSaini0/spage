@@ -30,6 +30,8 @@ const pushValidComponents = (currentVisitingPath, currentVisitingPathFiles) => {
                 // Warn if component name does not starts with a capital letter
                 if (componentName[0].toUpperCase() === componentName[0]) {
 
+                    const componentCssPath = path.join(currentVisitingPath, componentName + ".css");
+
                     // push component in array
                     components.push(
                         {
@@ -38,7 +40,9 @@ const pushValidComponents = (currentVisitingPath, currentVisitingPathFiles) => {
                             dirPath: currentVisitingPath,
                             // Set globalUnique to true as default 
                             // This whill be updated later when all components are processed
-                            globalUnique: true
+                            globalUnique: true,
+                            // Check if component has a associated css file
+                            componentCss: fs.existsSync(componentCssPath)
                         }
                     );
 
