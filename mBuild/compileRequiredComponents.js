@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const webpackConfigBuilder = require('./webpackConfigBuilder.js');
-const process = require('process');
 
 const getComponentByName = (components, componentName) => {
     let component;
@@ -26,11 +25,10 @@ const compileComponent = (component, projectConfig) => {
             if (err || stats.hasErrors()) {
                 console.log("Compiled " + component["name"] + " with " + messages.errors.length + " errors");
                 console.log(messages.errors[0].message);
-                resolve(false);
             } else {
                 console.log("Compiled " + component["name"]);
-                resolve(true);
             }
+            resolve();
             // Close compiler instance
             compiler.close((closeErr) => { /* */ });
         });

@@ -4,9 +4,11 @@ const compileRequiredComponents = require("./compileRequiredComponents.js");
 const renderComponentInPageDom = require('./renderComponentInPageDom');
 const loadPages = require('./loadPages.js');
 const fse = require('fs-extra');
+const path = require('path');
 
 const renderComponentInPageDomHandler = ([pageWithComponent, projectConfig]) => {
     renderComponentInPageDom(pageWithComponent, projectConfig);
+    fse.rmSync(path.join(projectConfig["buildDir"], "__componentsLib"), { recursive: true, force: true });
 }
 
 const startBuild = (projectConfig) => {

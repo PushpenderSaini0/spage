@@ -9,7 +9,7 @@ const getEntryConfig = () => {
 
 const getOutputConfig = () => {
     const outputConfigObj = {
-        path: path.join(projectConfig["buildDir"],"__componentsLib"),
+        path: path.join(projectConfig["buildDir"], "__componentsLib"),
         filename: `${component["name"]}.js`,
         libraryTarget: 'commonjs',
         library: component["name"],
@@ -29,8 +29,8 @@ const getRulesConfigForJsx = () => {
                     presets: [
                         [
                             '@babel/react', {
-                                "pragma": "__spage.createElement",
-                                "pragmaFrag": "__spage.Fragment",
+                                "pragma": "spage.createElement",
+                                "pragmaFrag": "spage.Fragment",
                                 "throwIfNamespace": false,
                                 "runtime": "classic",
 

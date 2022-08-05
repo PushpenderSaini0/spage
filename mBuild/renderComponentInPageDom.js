@@ -18,6 +18,7 @@ const renderComponentInPageDom = (pageWithComponent, projectConfig) => {
             const dom = new JSDOM(pageCode);
 
             // Get Root Div
+
             const rootDiv = [...dom.window.document.getElementsByTagName("DIV")][0];
 
             rootDiv.innerHTML = require(path.join(componentLibPath, `${component}.js`))[component][component]();
