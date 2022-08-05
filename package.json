@@ -1,5 +1,5 @@
 {
-  "name": "spage",
+  "name": "spagejs",
   "version": "1.0.0",
   "description": "framework to create component based static pages",
   "main": "lib/index.js",
