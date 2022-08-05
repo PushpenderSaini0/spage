@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const webpackConfigBuilder = require('./webpackConfigBuilder.js');
+const process = require('process');
 
 const getComponentByName = (components, componentName) => {
     let component;
@@ -14,6 +15,7 @@ const getComponentByName = (components, componentName) => {
 
 const compileComponent = (component, projectConfig) => {
     const webpackConfig = webpackConfigBuilder(component, projectConfig);
+    console.log(webpackConfig);
     let messages;
     webpack(
         webpackConfig,
@@ -21,10 +23,11 @@ const compileComponent = (component, projectConfig) => {
             // [Stats Object](#stats-object)
             messages = stats.toJson({ all: false, warnings: true, errors: true });
             if (err || stats.hasErrors()) {
-                console.log("Compiled " + component["name"] + " with " + messages.errors.length + " errors")
+                console.log("Compiled " + component["name"] + " with " + messages.errors.length + " errors");
+                console.log(messages.errors[0].message);
+                process.exit(1);
             } else {
-                console.log("Compiled " + component["name"])
-
+                console.log("Compiled " + component["name"]);
             }
         }
     );

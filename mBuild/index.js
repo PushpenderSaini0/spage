@@ -1,6 +1,7 @@
 const loadComponents = require('./loadComponents.js');
 const getComponentForPage = require('./getComponentForPage.js');
 const compileRequiredComponents = require("./compileRequiredComponents.js");
+const renderComponentInPageDom = require('./renderComponentInPageDom');
 const loadPages = require('./loadPages.js');
 const fse = require('fs-extra');
 
@@ -8,7 +9,7 @@ const startBuild = (projectConfig) => {
 
     // Load all components
     const components = loadComponents(projectConfig);
-    
+
     // Check if more tha one components were loaded
     if (components.length != 0) {
 
@@ -23,9 +24,8 @@ const startBuild = (projectConfig) => {
 
         // Update component for page
         const pageWithComponent = getComponentForPage(pages, components);
-
         compileRequiredComponents(pageWithComponent, components, projectConfig);
-
+        renderComponentInPageDom(pageWithComponent, projectConfig);
 
     } else {
         console.log("No components were found / loaded");

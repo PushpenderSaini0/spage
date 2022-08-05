@@ -9,7 +9,7 @@ const getEntryConfig = () => {
 
 const getOutputConfig = () => {
     const outputConfigObj = {
-        path: projectConfig["buildDir"],
+        path: path.join(projectConfig["buildDir"],"__componentsLib"),
         filename: `${component["name"]}.js`,
         libraryTarget: 'commonjs',
         library: component["name"],
