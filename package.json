@@ -1,6 +1,6 @@
 {
   "name": "spagejs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "framework to create component based static pages",
   "main": "lib/index.js",
   "bin": {
