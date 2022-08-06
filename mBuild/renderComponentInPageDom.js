@@ -21,7 +21,13 @@ const renderComponentInPageDom = (pageWithComponent, projectConfig) => {
 
             const rootDiv = [...dom.window.document.getElementsByTagName("DIV")][0];
 
-            rootDiv.innerHTML = require(path.join(componentLibPath, `${component}.js`))[component][component]();
+            const componentModule = require(path.join(componentLibPath, `${component}.js`));
+
+            if ("default" in componentModule[component]) {
+                rootDiv.innerHTML = componentModule[component]["default"]();
+            } else {
+                rootDiv.innerHTML = componentModule[component][component]();
+            }
 
             // Add main css
             dom.window.document.getElementsByTagName("HEAD")[0].innerHTML += `<link rel="stylesheet" href="/__main.css">`
