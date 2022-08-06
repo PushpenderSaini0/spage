@@ -1,0 +1,6 @@
+{
+    "componentsDir": "./src/components",
+    "pagesDir": "./src/pages",
+    "buildDir": "./dist",
+    "publicDir": "./public"
+}
